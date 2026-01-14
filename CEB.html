@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEB Cyber Security Awareness Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --ceb-red: #CE1126;
+            --ceb-dark: #1f1f1f;
+            --ceb-gray: #6c757d;
+            --ceb-light: #f4f6f9;
+            --success: #2e7d32;
+            --warning: #c62828;
+            --info: #1565c0;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Iskoola Pota', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, rgba(206, 17, 38, 0.05), rgba(0, 0, 0, 0.03));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 25px;
+        }
+
+        .header {
+            background: linear-gradient(90deg, var(--ceb-red), #a80d1f);
+            padding: 25px 30px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            height: 80px;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ceb-red), #e74c3c);
+            width: 16.66%;
+            border-radius: 10px;
+            transition: width 0.8s ease;
+        }
+
+        .progress-text {
+            font-weight: bold;
+            color: var(--ceb-dark);
+            white-space: nowrap;
+        }
+
+        .score-container {
+            background: white;
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .score-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--ceb-red);
+        }
+
+        .score-label {
+            font-size: 14px;
+            color: var(--ceb-gray);
+        }
+
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .scenario-sidebar {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .scenario-sidebar h3 {
+            color: var(--ceb-red);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .scenario-list {
+            list-style: none;
+        }
+
+        .scenario-item {
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scenario-item:hover {
+            background: #f8f9fa;
+        }
+
+        .scenario-item.active {
+            background: #fff5f5;
+            border-left-color: var(--ceb-red);
+            font-weight: bold;
+        }
+
+        .scenario-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .scenario-icon.phishing {
+            background: var(--warning);
+        }
+
+        .scenario-icon.password {
+            background: #f39c12;
+        }
+
+        .scenario-icon.social {
+            background: #3498db;
+        }
+
+        .scenario-icon.malware {
+            background: #9b59b6;
+        }
+
+        .scenario-icon.wifi {
+            background: #1abc9c;
+        }
+
+        .scenario-icon.report {
+            background: var(--success);
+        }
+
+        .scenario-content {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .step-title {
+            color: var(--ceb-dark);
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .step-subtitle {
+            color: var(--ceb-gray);
+            font-size: 16px;
+        }
+
+        .step-content {
+            flex-grow: 1;
+            margin-bottom: 30px;
+        }
+
+        .email-simulation {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #dee2e6;
+            margin-bottom: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .email-header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .email-subject {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .email-from {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .email-body {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .email-button {
+            display: inline-block;
+            background: var(--ceb-red);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .email-button:hover {
+            background: #a80d1f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(206, 17, 38, 0.3);
+        }
+
+        .interactive-area {
+            margin-top: 20px;
+        }
+
+        .interactive-prompt {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--ceb-dark);
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            border-color: #ced4da;
+            background: #f8f9fa;
+        }
+
+        .option.selected {
+            border-color: var(--ceb-red);
+            background: #fff5f5;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: #e8f5e9;
+        }
+
+        .option.incorrect {
+            border-color: var(--warning);
+            background: #ffebee;
+        }
+
+        .option-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .option-icon.default {
+            background: var(--ceb-gray);
+        }
+
+        .option-icon.correct {
+            background: var(--success);
+        }
+
+        .option-icon.incorrect {
+            background: var(--warning);
+        }
+
+        .feedback-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .feedback-message.correct {
+            background: #e8f5e9;
+            border-left: 5px solid var(--success);
+            display: block;
+        }
+
+        .feedback-message.incorrect {
+            background: #ffebee;
+            border-left: 5px solid var(--warning);
+            display: block;
+        }
+
+        .tip-box {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 5px solid var(--info);
+        }
+
+        .tip-box h4 {
+            color: var(--info);
+            margin-bottom: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--ceb-red);
+            color: white;
+            box-shadow: 0 4px 12px rgba(206, 17, 38, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #a80d1f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(206, 17, 38, 0.35);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: var(--ceb-dark);
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+        }
+
+        .btn-success:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        .certificate-container {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .certificate {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            border: 15px solid var(--ceb-red);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px dashed rgba(206, 17, 38, 0.2);
+            pointer-events: none;
+        }
+
+        .certificate h2 {
+            color: var(--ceb-red);
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .certificate h3 {
+            color: var(--ceb-dark);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .user-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--ceb-dark);
+            margin: 20px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .certificate-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--ceb-red);
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: var(--ceb-gray);
+        }
+
+        .footer {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            padding: 20px;
+            color: var(--ceb-gray);
+            font-size: 14px;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffeb3b;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--ceb-red);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--ceb-gray);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .scenario-sidebar {
+                flex: none;
+                width: 100%;
+            }
+            
+            .progress-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .progress-bar {
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://i0.wp.com/complainthub.org/wp-content/uploads/2024/03/CEB-SL-Logo.png" alt="CEB Logo" class="logo" />
+                <div>
+                    <h1>Cyber Security Awareness Training</h1>
+                    <p>සයිබර් ආරක්ෂණ පුහුණු වැඩසටහන - මාසික පුහුණු මාලාව</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">පියවර <span id="currentStep">1</span> / 6</div>
+    </div>
+
+    <div class="score-container">
+        <div>
+            <div class="score-value" id="scoreValue">0</div>
+            <div class="score-label">ලකුණු</div>
+        </div>
+        <div>
+            <div class="stat-value" id="correctCount">0</div>
+            <div class="score-label">නිවැරදි පිළිතුරු</div>
+        </div>
+        <div>
+            <div class="stat-value" id="timeSpent">0:00</div>
+            <div class="score-label">වෙන්වූ කාලය</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="scenario-sidebar">
+            <h3>පුහුණු අංශ</h3>
+            <ul class="scenario-list">
+                <li class="scenario-item active" data-step="1">
+                    <div class="scenario-icon phishing"><i class="fas fa-fish"></i></div>
+                    <div>
+                        <div class="scenario-title">Phishing ප්‍රහාර</div>
+                        <div class="scenario-desc">ව්‍යාජ ඊමේල් හඳුනාගැනීම</div>
+                    </div>
+                </li>
+                <li class="scenario-item" data-step="2">
+                    <div class="scenario-icon password"><i class="fas fa-key"></i></div>
+                    <div>
+                        <div class="scenario-title">රහස් පද ආරක්ෂාව</div>
+                        <div class="scenario-desc">ශක්තිමත් රහස් පද නිර්මාණය</div>
+                    </div>
+                </li>
+                <li class="scenario-item" data-step="3">
+                    <div class="scenario-icon social"><i class="fas fa-user-friends"></i></div>
+                    <div>
+                        <div class="scenario-title">සමාජ ඉංජිනේරු විද්‍යාව</div>
+                        <div class="scenario-desc">පෞද්ගලික තොරතුරු ආරක්ෂාව</div>
+                    </div>
+                </li>
+                <li class="scenario-item" data-step="4">
+                    <div class="scenario-icon malware"><i class="fas fa-virus"></i></div>
+                    <div>
+                        <div class="scenario-title">Malware වලින් ආරක්ෂාව</div>
+                        <div class="scenario-desc">ක්ෂුද්‍ර තොරතුරු සොරකම් කිරීම</div>
+                    </div>
+                </li>
+                <li class="scenario-item" data-step="5">
+                    <div class="scenario-icon wifi"><i class="fas fa-wifi"></i></div>
+                    <div>
+                        <div class="scenario-title">Wi-Fi ආරක්ෂාව</div>
+                        <div class="scenario-desc">සුරක්ෂිත ජාල සම්බන්ධතා</div>
+                    </div>
+                </li>
+                <li class="scenario-item" data-step="6">
+                    <div class="scenario-icon report"><i class="fas fa-certificate"></i></div>
+                    <div>
+                        <div class="scenario-title">සහතිකය සහ වාර්තා</div>
+                        <div class="scenario-desc">පුහුණුව නිමා කිරීම</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="scenario-content">
+            <!-- Step 1: Phishing -->
+            <div id="step1" class="step active">
+                <div class="step-header">
+                    <div class="badge">Session 01 - Phishing Training</div>
+                    <h2 class="step-title">අවධානය යොමු කරන්න!</h2>
+                    <p class="step-subtitle">ඔබ දැන් click කළේ Phishing ප්‍රහාරයකට සමාන ව්‍යාජ සබැඳියකි.</p>
+                </div>
+                
+                <div class="step-content">
+                    <div class="email-simulation">
+                        <div class="email-header">
+                            <div class="email-subject">🚨 කරුණාකර ඔබගේ CEB ගිණුම යාවත්කාලීන කරන්න</div>
+                            <div class="email-from">From: CEB Support <support@ceb-update.net></div>
+                            <div class="email-from">To: ඔබ <employee@ceb.lk></div>
+                        </div>
+                        <div class="email-body">
+                            <p>සැණින්,</p>
+                            <p>ඔබගේ CEB ගිණුම අවසාන වීමට 24 පැයක් පමණ ගතවී ඇත. ඔබගේ ගිණුම අක්‍රිය කිරීම වළක්වා ගැනීම සඳහා, කරුණාකර දැන්ම ඔබගේ තොරතුරු යාවත්කාලීන කරන්න.</p>
+                            <p>ගිණුම යාවත්කාලීන කිරීමට මෙම සබැඳිය ක්ලික් කරන්න:</p>
+                            <a class="email-button" id="phishingLink">ගිණුම යාවත්කාලීන කරන්න</a>
+                            <p style="margin-top: 20px;">මෙම ක්‍රියාවලිය තුළ ඔබගේ පිවිසුම් තොරතුරු, දුරකථන අංකය සහ පුද්ගලික තොරතුරු යාවත්කාලීන කිරීමට ඔබට අවශ්‍ය වනු ඇත.</p>
+                            <p>ඔබගේ සහයෝගය අපි අගය කරමු.</p>
+                            <p>CEB සහයක කණ්ඩායම</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-area">
+                        <div class="interactive-prompt">මෙම ඊමේල් එකේ ඇති ආරක්ෂක ගැටළු මොනවාද?</div>
+                        <div class="options-container">
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">A</div>
+                                <div>ව්‍යාජ ඊමේල් ලිපිනය (@ceb-update.net), කලබල කරවන භාෂාව, සැක සහිත සබැඳිය</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">B</div>
+                                <div>ඊමේල් එකේ නිවැරදි වියාකරණයක් නොමැති වීම</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">C</div>
+                                <div>පුද්ගලික තොරතුරු ඉල්ලීම සහ අනවශ්‍ය හදිසි තත්වයක් නිර්මාණය කිරීම</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">D</div>
+                                <div>ඊමේල් එක CEB ලාංඡනය භාවිතා නොකිරීම</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-message correct" id="feedbackCorrect">
+                            <i class="fas fa-check-circle"></i> හරි! ඔබ Phishing ඊමේල් වල සුලභ ලක්ෂණ හඳුනාගෙන ඇත. සැබෑ CEB ඊමේල් @ceb.lk වසමෙන් පමණක් පැමිණේ.
+                        </div>
+                        
+                        <div class="feedback-message incorrect" id="feedbackIncorrect">
+                            <i class="fas fa-times-circle"></i> නැවත උත්සාහ කරන්න. Phishing ඊමේල් වල ප්‍රධාන ලක්ෂණ වන්නේ ව්‍යාජ ඊමේල් ලිපින, හදිසි අවස්ථා නිර්මාණය කිරීම, සහ පුද්ගලික තොරතුරු ඉල්ලීමයි.
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> ආරක්ෂක ඉඟිය</h4>
+                        <p>සැක සහිත ඊමේල් සමග පැමිණෙන සබැඳි ක්ලික් කිරීමට පෙර, ඊමේල් ලිපිනය සහ URL එක සත්‍යාපනය කරන්න. සැබෑ CEB ඊමේල් සදහාම @ceb.lk වසම භාවිතා කරයි.</p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="showHint()">
+                        <i class="fas fa-question-circle"></i> උපකාරය
+                    </button>
+                    <button class="btn btn-primary" onclick="checkAnswer(1)">
+                        පිළිතුර අත්කරගන්න <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Password Security -->
+            <div id="step2" class="step">
+                <div class="step-header">
+                    <div class="badge">Session 02 - Password Security</div>
+                    <h2 class="step-title">රහස් පද ආරක්ෂාව</h2>
+                    <p class="step-subtitle">ශක්තිමත් රහස් පද නිර්මාණය කිරීම සහ ආරක්ෂිතව ගබඩා කිරීම</p>
+                </div>
+                
+                <div class="step-content">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-value" id="passwordStrength">0%</div>
+                            <div class="stat-label">රහස්පද ශක්තිය</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="crackTime">තත්පර 0</div>
+                            <div class="stat-label">විනාශ කිරීමේ කාලය</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">12+</div>
+                            <div class="stat-label">අක්ෂර යෝග්‍ය</div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-area">
+                        <div class="interactive-prompt">පහත සඳහන් රහස් පද වලින් වඩාත්ම ආරක්ෂිත එක කුමක්ද?</div>
+                        <div class="options-container">
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">A</div>
+                                <div>ceb12345</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">B</div>
+                                <div>Colombo@2023</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">C</div>
+                                <div>L1ght$H0u$3#P0w3r</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">D</div>
+                                <div>මගේ උපන්දිනය 01011980</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-message correct" id="feedbackCorrect2">
+                            <i class="fas fa-check-circle"></i> හරි! "L1ght$H0u$3#P0w3r" යනු දිගු, අක්ෂර, ඉලක්කම් සහ සංකේත අඩංගු රහස්පදයක් වන අතර එය අනුමාන කිරීම අපහසු වේ.
+                        </div>
+                        
+                        <div class="feedback-message incorrect" id="feedbackIncorrect2">
+                            <i class="fas fa-times-circle"></i> නැවත උත්සාහ කරන්න. ශක්තිමත් රහස්පදයක් අක්ෂර 12කට වැඩි දිගකින් යුක්ත විය යුතු අතර, විශාල හා කුඩා අකුරු, ඉලක්කම් සහ සංකේත අඩංගු විය යුතුය.
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> ආරක්ෂක ඉඟිය</h4>
+                        <p>විවිධ වෙබ් අඩවි සඳහා විවිධ රහස් පද භාවිතා කරන්න. රහස් පද කළමනාකරණයක් (Password Manager) භාවිතා කිරීමෙන් ඔබට අනන්‍ය හා ශක්තිමත් රහස් පද නිර්මාණය කිරීමට හා මතක තබා ගැනීමට උපකාරී වේ.</p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="previousStep(2)">
+                        <i class="fas fa-arrow-left"></i> පසුපසට
+                    </button>
+                    <button class="btn btn-primary" onclick="checkAnswer(2)">
+                        පිළිතුර අත්කරගන්න <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Social Engineering -->
+            <div id="step3" class="step">
+                <div class="step-header">
+                    <div class="badge">Session 03 - Social Engineering</div>
+                    <h2 class="step-title">සමාජ ඉංජිනේරු විද්‍යාව</h2>
+                    <p class="step-subtitle">පෞද්ගලික තොරතුරු ආරක්ෂා කිරීම සහ අනවසර ප්‍රවේශය වැළැක්වීම</p>
+                </div>
+                
+                <div class="step-content">
+                    <div class="email-simulation">
+                        <div class="email-header">
+                            <div class="email-subject">වහාම: CEB IT සහය - ඔබගේ ගිණුම ගැන හදිසි ගැටලුවකි</div>
+                            <div class="email-from">From: IT Support <itsupport@ceb.lk></div>
+                            <div class="email-from">To: ඔබ <employee@ceb.lk></div>
+                        </div>
+                        <div class="email-body">
+                            <p>ආයුබෝවන්,</p>
+                            <p>මම CEB IT අංශයේ ජෝන් පෙරේරා. අපි ඔබගේ ගිණුම සමග සම්බන්ධ ගැටලුවක් හඳුනාගෙන ඇත. ගිණුම අක්‍රිය වීම වැළැක්වීම සඳහා, අපට ඔබගේ පරිශීලක නම සහ රහස්පදය අවශ්‍ය වේ.</p>
+                            <p>කරුණාකර පහත තොරතුරු වහාම ඊමේල් කරන්න:</p>
+                            <ul>
+                                <li>පරිශීලක නම</li>
+                                <li>වත්මන් රහස්පදය</li>
+                                <li>ඔබගේ අංශය</li>
+                            </ul>
+                            <p>මෙය අත්‍යවශ්‍ය වේ, මන්ද ඔබගේ ගිණුම තුළ අනවසර ප්‍රවේශයක් හඳුනාගෙන ඇත.</p>
+                            <p>ස්තුතියි,<br/>ජෝන් පෙරේරා<br/>IT සහය නියෝජිත</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-area">
+                        <div class="interactive-prompt">මෙම ඊමේල් එක ලැබුණු විට ඔබ කුමක් කරනවාද?</div>
+                        <div class="options-container">
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">A</div>
+                                <div>තොරතුරු වහාම ඊමේල් කරන්න, මන්ද එය CEB ඊමේල් ලිපිනයකින් පැමිණ ඇත</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">B</div>
+                                <div>IT අංශයට කෙලින්ම දුරකථනය කර ඊමේල් එක සත්‍යාපනය කරන්න</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">C</div>
+                                <div>ඊමේල් එක නොසලකා හරින්න, මන්ද එය වැදගත් නොවේ</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">D</div>
+                                <div>කිසිදු පුද්ගලික තොරතුරු නොදී, සිදුවීම CEB ආරක්ෂක කණ්ඩායමට වාර්තා කරන්න</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-message correct" id="feedbackCorrect3">
+                            <i class="fas fa-check-circle"></i> හරි! සැබෑ IT සහයක් කිසිවිටෙකත් රහස්පදය ඉල්ලා සිටින්නේ නැත. සැක සහිත ඊමේල් සත්‍යාපනය කිරීම සඳහා නිල නොවන සන්නිවේදන මාධ්‍ය භාවිතා කරන්න.
+                        </div>
+                        
+                        <div class="feedback-message incorrect" id="feedbackIncorrect3">
+                            <i class="fas fa-times-circle"></i> නැවත උත්සාහ කරන්න. සැබෑ IT සහය කිසිවිටෙකත් රහස්පදය ඉල්ලා සිටින්නේ නැත. සැක සහිත ඉල්ලීම් සත්‍යාපනය කිරීම සඳහා සෘජුවම නිල නොවන සන්නිවේදන මාර්ග භාවිතා කරන්න.
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> ආරක්ෂක ඉඟිය</h4>
+                        <p>CEB IT අංශය කිසිදු අවස්ථාවක ඔබගේ රහස්පදය ඉල්ලා සිටින්නේ නැත. ඔබගේ පුද්ගලික තොරතුරු සැමවිටම ආරක්ෂිතව තබාගන්න. සැක සහිත ඉල්ලීම් සම්බන්ධයෙන් විමසීමට IT සහය අමතන්න.</p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="previousStep(3)">
+                        <i class="fas fa-arrow-left"></i> පසුපසට
+                    </button>
+                    <button class="btn btn-primary" onclick="checkAnswer(3)">
+                        පිළිතුර අත්කරගන්න <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Malware Protection -->
+            <div id="step4" class="step">
+                <div class="step-header">
+                    <div class="badge">Session 04 - Malware Protection</div>
+                    <h2 class="step-title">Malware වලින් ආරක්ෂාව</div>
+                        <p class="step-subtitle">ක්ෂුද්‍ර තොරතුරු සොරකම් කිරීමේ මෘදුකාංග වලින් ආරක්ෂා වීම</p>
+                </div>
+                
+                <div class="step-content">
+                    <div class="interactive-area">
+                        <div class="interactive-prompt">පහත සඳහන් අවස්ථා වලින් Malware අන්තර්ගත ගොනුවක් බාගත කිරීමට ඉඩ ඇති අවස්ථාවක් කුමක්ද?</div>
+                        <div class="options-container">
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">A</div>
+                                <div>CEB නිල වෙබ් අඩවියෙන් නිල මෘදුකාංග යාවත්කාලීන කිරීම</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">B</div>
+                                <div>නොදන්නා ඊමේල් අත්බැඳියක් සමග පැමිණි ".exe" ගොනුවක් බාගත කිරීම</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">C</div>
+                                <div>නොදන්නා වෙබ් අඩවියකින් නොමිලේ මෘදුකාංගයක් බාගත කිරීම</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">D</div>
+                                <div>Windows Update හරහා ආරක්ෂණ යාවත්කාලීන කිරීම</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-message correct" id="feedbackCorrect4">
+                            <i class="fas fa-check-circle"></i> හරි! නොදන්නා මූලාශ්‍ර වලින් ගොනු බාගත කිරීම Malware ආසාධනයක් විය හැකිය. සැමවිටම නිල මූලාශ්‍ර වලින් පමණක් මෘදුකාංග බාගත කරන්න.
+                        </div>
+                        
+                        <div class="feedback-message incorrect" id="feedbackIncorrect4">
+                            <i class="fas fa-times-circle"></i> නැවත උත්සාහ කරන්න. Malware බොහෝ විට නොදන්නා ඊමේල්, වෙබ් අඩවි හෝ නොමිලේ මෘදුකාංග බාගත කිරීම් හරහා පැතිර යයි. නිල මූලාශ්‍ර පමණක් භාවිතා කරන්න.
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> ආරක්ෂක ඉඟිය</h4>
+                        <p>සැමවිටම ඔබගේ පරිගණකයේ ඇන්ටිවයරස් මෘදුකාංගය ක්‍රියාත්මක හා යාවත්කාලීනව තබාගන්න. අධික තරඟ හෝ අනපේක්ෂිත පිරිනැමීම් ඇති වෙබ් අඩවි වලට විශ්වාස නොකරන්න.</p>
+                    </div>
+                    
+                    <div class="email-simulation" style="margin-top: 25px;">
+                        <div class="email-header">
+                            <div class="email-subject">ඔබ දිනූ! CEB විශේෂ ප්‍රසාද දීමනාව</div>
+                            <div class="email-from">From: CEB Promotions <promo@ceb-giveaway.com></div>
+                        </div>
+                        <div class="email-body">
+                            <p>සුභ පැතුම්! ඔබ CEB හි වාර්ෂික ප්‍රසාද දීමනාව දිනාගෙන ඇත!</p>
+                            <p>ප්‍රසාද දීමනාව ලබාගැනීමට, කරුණාකර පහත සබැඳිය ක්ලික් කර මෘදුකාංගය බාගත කරන්න:</p>
+                            <a class="email-button">ප්‍රසාද දීමනාව ලබාගන්න</a>
+                            <p style="margin-top: 20px; font-size: 12px; color: #666;">*මෙම පණිවුඩය ස්වයංක්‍රීයව යවනු ලැබේ. කරුණාකර පිළිතුරු නොදෙන්න.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="previousStep(4)">
+                        <i class="fas fa-arrow-left"></i> පසුපසට
+                    </button>
+                    <button class="btn btn-primary" onclick="checkAnswer(4)">
+                        පිළිතුර අත්කරගන්න <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 5: WiFi Security -->
+            <div id="step5" class="step">
+                <div class="step-header">
+                    <div class="badge">Session 05 - WiFi Security</div>
+                    <h2 class="step-title">Wi-Fi ආරක්ෂාව</h2>
+                    <p class="step-subtitle">සුරක්ෂිත ජාල සම්බන්ධතා සහ පොදු Wi-Fi භාවිතයේ අවදානම්</p>
+                </div>
+                
+                <div class="step-content">
+                    <div class="interactive-area">
+                        <div class="interactive-prompt">ඔබ නගරයේ කෝපි සාප්පුවක පොදු Wi-Fi භාවිතා කරමින් සිටියදී, ආරක්ෂිතව සිටීම සඳහා කුමන ක්‍රියාමාර්ග ගත යුතුද?</div>
+                        <div class="options-container">
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">A</div>
+                                <div>VPN (Virtual Private Network) එකක් භාවිතා කරන්න</div>
+                            </div>
+                            <div class="option" data-correct="false">
+                                <div class="option-icon default">B</div>
+                                <div>CEB පද්ධතියට පිවිසෙන්න, මන්ද එය සැමවිටම ආරක්ෂිතය</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">C</div>
+                                <div>බැංකුකරණ හෝ සංවේදී ක්‍රියාකාරකම් වලින් වැළකී සිටින්න</div>
+                            </div>
+                            <div class="option" data-correct="true">
+                                <div class="option-icon default">D</div>
+                                <div>ඔබ සම්බන්ධ වූ Wi-Fi ජාලයේ නම සත්‍යාපනය කරන්න</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-message correct" id="feedbackCorrect5">
+                            <i class="fas fa-check-circle"></i> හරි! පොදු Wi-Fi ජාල වලදී VPN භාවිතය සහ සංවේදී ක්‍රියාකාරකම් වලක්වා ගැනීම අත්‍යවශ්‍ය වේ. නොදන්නා Wi-Fi ජාල සැමවිටම අවදානම් සහිත වේ.
+                        </div>
+                        
+                        <div class="feedback-message incorrect" id="feedbackIncorrect5">
+                            <i class="fas fa-times-circle"></i> නැවත උත්සාහ කරන්න. පොදු Wi-Fi ජාල වලදී, ඔබගේ දත්ත අන් අයට පහසුවෙන් ප්‍රවේශ විය හැකිය. VPN භාවිතා කිරීම සහ සංවේදී ක්‍රියාකාරකම් වලක්වා ගැනීම අත්‍යවශ්‍ය වේ.
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> ආරක්ෂක ඉඟිය</h4>
+                        <p>පොදු Wi-Fi ජාල වලදී CEB පද්ධතියට ප්‍රවේශ වීමට VPN භාවිතා කරන්න. CEB මගින් නිල වශයෙන් අනුමත කරන ලද VPN සේවාවන් භාවිතා කරන්න. නොදන්නා Wi-Fi ජාලයකට සම්බන්ධ වීමේදී සැමවිටම අමතර ප්‍රවේශ පරීක්ෂා කරන්න.</p>
+                    </div>
+                    
+                    <div class="email-simulation" style="margin-top: 25px;">
+                        <div class="email-header">
+                            <div class="email-subject">CEB VPN යාවත්කාලීනය - නව ආරක්ෂක විශේෂාංග</div>
+                            <div class="email-from">From: IT Security <security@ceb.lk></div>
+                        </div>
+                        <div class="email-body">
+                            <p>සියලුම CEB සේවකයින්ට,</p>
+                            <p>CEB IT අංශය බාහිර ජාල වලින් සුරක්ෂිතව සම්බන්ධ වීම සඳහා නව VPN සේවාවක් හඳුන්වා දී ඇත.</p>
+                            <p><b>නව VPN සේවාව භාවිතා කිරීමේ උපදෙස්:</b></p>
+                            <ol>
+                                <li>CEB නිල වෙබ් අඩවියෙන් VPN මෘදුකාංගය බාගත කරන්න</li>
+                                <li>ඔබගේ CEB පරිශීලක නම සහ රහස්පදය ඇතුළත් කරන්න</li>
+                                <li>වැඩ කටයුතු සඳහා අවශ්‍ය පද්ධති වෙත සුරක්ෂිතව ප්‍රවේශ වන්න</li>
+                            </ol>
+                            <p>පොදු Wi-Fi භාවිතා කරන සෑම අවස්ථාවකම VPN සක්‍රිය කර තබාගන්න.</p>
+                            <p>ස්තුතියි,<br/>CEB IT ආරක්ෂණ කණ්ඩායම</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="previousStep(5)">
+                        <i class="fas fa-arrow-left"></i> පසුපසට
+                    </button>
+                    <button class="btn btn-primary" onclick="checkAnswer(5)">
+                        පුහුණුව නිමා කර සහතිකය ලබාගන්න <i class="fas fa-award"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 6: Certificate -->
+            <div id="step6" class="step">
+                <div class="step-header">
+                    <div class="badge">Session 06 - Training Completion</div>
+                    <h2 class="step-title">පුහුණුව සාර්ථකව අවසන්!</h2>
+                    <p class="step-subtitle">සයිබර් ආරක්ෂණ පුහුණු මාලාව සම්පූර්ණ කිරීම</p>
+                </div>
+                
+                <div class="step-content">
+                    <div class="certificate-container">
+                        <div class="certificate">
+                            <h2><i class="fas fa-certificate"></i> සයිබර් ආරක්ෂණ පුහුණු සහතිකය</h2>
+                            <h3>Ceylon Electricity Board</h3>
+                            <p>මෙම සහතිකය මගින් සනාථ කරන්නේ</p>
+                            <div class="user-name" id="userName">සේවක නම</div>
+                            <p>CEB සයිබර් ආරක්ෂණ පුහුණු මාලාව සාර්ථකව සම්පූර්ණ කර ඇති බව</p>
+                            <div class="certificate-info">
+                                <div class="info-item">
+                                    <div class="info-value" id="certScore">0</div>
+                                    <div class="info-label">ලකුණු</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-value" id="certDate">දිනය</div>
+                                    <div class="info-label">සම්පූර්ණ කළ දිනය</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-value" id="certTime">0:00</div>
+                                    <div class="info-label">වෙන්වූ කාලය</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+                                <div style="text-align: center; padding: 10px; border-right: 1px solid #eee;">
+                                    <div style="font-weight: bold;">IT Security Division</div>
+                                    <div style="font-size: 12px; color: #666;">CEB Sri Lanka</div>
+                                </div>
+                                <div style="text-align: center; padding: 10px;">
+                                    <div style="font-weight: bold;">Valid Until</div>
+                                    <div style="font-size: 14px; color: #333;" id="validUntil">දිනය</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-container" style="margin: 30px auto; max-width: 600px;">
+                            <div class="stat-item">
+                                <div class="stat-value" id="finalScore">0%</div>
+                                <div class="stat-label">සමස්ත ලකුණු</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="correctAnswers">0</div>
+                                <div class="stat-label">නිවැරදි පිළිතුරු</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalTime">0:00</div>
+                                <div class="stat-label">මුළු කාලය</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-box" style="max-width: 600px; margin: 0 auto;">
+                            <h4><i class="fas fa-shield-alt"></i> ඔබගේ ආරක්ෂණ දැනුම සුරකින්න</h4>
+                            <p>සයිබර් ආරක්ෂණය යනු අඛණ්ඩ ක්‍රියාවලියකි. සෑම මාසයකම CEB IT අංශය මගින් නව පුහුණු මාතෘකා සහ අත්දැකීම් ලබා දෙනු ඇත. අනාගත Phishing පරීක්ෂණ වලදී අහු නොවී සිටීමට උත්සාහ කරන්න.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="previousStep(6)">
+                        <i class="fas fa-arrow-left"></i> පසුපසට
+                    </button>
+                    <button class="btn btn-success" onclick="downloadCertificate()">
+                        <i class="fas fa-download"></i> සහතිකය බාගත කරන්න
+                    </button>
+                    <button class="btn btn-primary" onclick="restartTraining()">
+                        <i class="fas fa-redo"></i> නැවත ආරම්භ කරන්න
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>CEB IT Security Division - පාරිභෝගිකයාට වඩාත් සුරක්ෂිත සේවාවක් උදෙසා.</p>
+        <p style="font-size: 12px; margin-top: 5px;">© 2023 Ceylon Electricity Board. All rights reserved. | පුහුණු මාලාව: M01-CYB-2023</p>
+    </div>
+
+    <script>
+        // Training state variables
+        let currentStep = 1;
+        let totalSteps = 6;
+        let score = 0;
+        let correctAnswers = 0;
+        let startTime = new Date();
+        let timeSpent = 0;
+        let timerInterval;
+        
+        // Initialize the training
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up scenario sidebar click events
+            document.querySelectorAll('.scenario-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Set up phishing link simulation
+            document.getElementById('phishingLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('⚠️ අවධානය! මෙම සබැඳිය ඔබව ව්‍යාජ වෙබ් අඩවියකට ගෙන යා හැකිය. සැබෑ CEB සබැඳි සදහා සැමවිටම @ceb.lk වසම පරීක්ෂා කරන්න.');
+            });
+            
+            // Start the timer
+            startTimer();
+            
+            // Initialize user name
+            const userName = prompt("කරුණාකර ඔබගේ නම ඇතුළත් කරන්න:", "CEB සේවක");
+            if (userName) {
+                document.getElementById('userName').textContent = userName;
+            }
+            
+            // Initialize certificate date
+            const now = new Date();
+            const validUntil = new Date();
+            validUntil.setMonth(validUntil.getMonth() + 6);
+            
+            document.getElementById('certDate').textContent = formatDate(now);
+            document.getElementById('validUntil').textContent = formatDate(validUntil);
+        });
+        
+        // Timer functions
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            const now = new Date();
+            timeSpent = Math.floor((now - startTime) / 1000);
+            
+            const minutes = Math.floor(timeSpent / 60);
+            const seconds = timeSpent % 60;
+            
+            document.getElementById('timeSpent').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Navigation functions
+        function goToStep(step) {
+            // Update active step
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.scenario-item').forEach(s => s.classList.remove('active'));
+            
+            document.getElementById(`step${step}`).classList.add('active');
+            document.querySelector(`.scenario-item[data-step="${step}"]`).classList.add('active');
+            
+            // Update progress bar
+            const progressPercent = (step / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = `${progressPercent}%`;
+            document.getElementById('currentStep').textContent = step;
+            
+            currentStep = step;
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                goToStep(currentStep + 1);
+            }
+        }
+        
+        function previousStep() {
+            if (currentStep > 1) {
+                goToStep(currentStep - 1);
+            }
+        }
+        
+        // Answer checking
+        function checkAnswer(step) {
+            const options = document.querySelectorAll(`#step${step} .option`);
+            let correctSelected = true;
+            let allCorrectSelected = true;
+            
+            options.forEach(option => {
+                const isCorrect = option.getAttribute('data-correct') === 'true';
+                const isSelected = option.classList.contains('selected');
+                
+                if (isSelected && isCorrect) {
+                    option.classList.add('correct');
+                    option.querySelector('.option-icon').classList.add('correct');
+                    option.querySelector('.option-icon').innerHTML = '<i class="fas fa-check"></i>';
+                } else if (isSelected && !isCorrect) {
+                    option.classList.add('incorrect');
+                    option.querySelector('.option-icon').classList.add('incorrect');
+                    option.querySelector('.option-icon').innerHTML = '<i class="fas fa-times"></i>';
+                    correctSelected = false;
+                } else if (!isSelected && isCorrect) {
+                    option.classList.add('correct');
+                    option.querySelector('.option-icon').classList.add('correct');
+                    option.querySelector('.option-icon').innerHTML = '<i class="fas fa-check"></i>';
+                    allCorrectSelected = false;
+                }
+                
+                // Disable further selection
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Show feedback
+            if (allCorrectSelected && correctSelected) {
+                document.getElementById(`feedbackIncorrect${step}`).style.display = 'none';
+                document.getElementById(`feedbackCorrect${step}`).style.display = 'block';
+                
+                // Update score
+                if (!document.querySelector(`#step${step}`).hasAttribute('data-scored')) {
+                    score += 20;
+                    correctAnswers++;
+                    document.querySelector(`#step${step}`).setAttribute('data-scored', 'true');
+                    
+                    updateScoreDisplay();
+                }
+            } else {
+                document.getElementById(`feedbackCorrect${step}`).style.display = 'none';
+                document.getElementById(`feedbackIncorrect${step}`).style.display = 'block';
+            }
+            
+            // Update action buttons
+            const actionButton = document.querySelector(`#step${step} .btn-primary`);
+            if (actionButton) {
+                if (step < totalSteps) {
+                    actionButton.innerHTML = 'මීළඟ පියවර <i class="fas fa-arrow-right"></i>';
+                    actionButton.onclick = nextStep;
+                } else {
+                    actionButton.innerHTML = 'සහතිකය බලන්න <i class="fas fa-award"></i>';
+                    actionButton.onclick = function() { goToStep(6); updateCertificate(); };
+                }
+            }
+        }
+        
+        // Option selection
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                const option = e.target.closest('.option');
+                const step = option.closest('.step').id.replace('step', '');
+                
+                // Reset all options in this step
+                document.querySelectorAll(`#step${step} .option`).forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.querySelector('.option-icon').textContent = 
+                        ['A', 'B', 'C', 'D'][Array.from(opt.parentNode.children).indexOf(opt)];
+                    opt.querySelector('.option-icon').className = 'option-icon default';
+                });
+                
+                // Select clicked option
+                option.classList.add('selected');
+            }
+        });
+        
+        // Update score display
+        function updateScoreDisplay() {
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('correctCount').textContent = correctAnswers;
+            
+            // Update password strength (simulated)
+            if (currentStep === 2) {
+                document.getElementById('passwordStrength').textContent = '85%';
+                document.getElementById('crackTime').textContent = 'සියවස් 3';
+            }
+        }
+        
+        // Update certificate with final stats
+        function updateCertificate() {
+            document.getElementById('certScore').textContent = score;
+            document.getElementById('finalScore').textContent = `${Math.round((score / 100) * 100)}%`;
+            document.getElementById('correctAnswers').textContent = correctAnswers;
+            
+            const totalMinutes = Math.floor(timeSpent / 60);
+            const totalSeconds = timeSpent % 60;
+            document.getElementById('certTime').textContent = `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+            document.getElementById('totalTime').textContent = `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Helper functions
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('si-LK', options);
+        }
+        
+        function showHint() {
+            alert('💡 ඉඟිය: Phishing ඊමේල් වල ලක්ෂණ:\n1. ව්‍යාජ ඊමේල් ලිපින (@ceb.lk වෙනුවට වෙනත් වසමක්)\n2. හදිසි අවස්ථා නිර්මාණය කිරීම\n3. පුද්ගලික තොරතුරු ඉල්ලීම\n4. සැක සහිත සබැඳි හෝ ඇමුණුම්');
+        }
+        
+        function downloadCertificate() {
+            alert('සහතිකය බාගත කිරීම ආරම්භ විය. CEB IT අංශය විසින් ඔබගේ පුහුණු අංකය M01-CYB-2023-${score} ලෙස පටිගත කර ඇත.');
+        }
+        
+        function restartTraining() {
+            if (confirm('ඔබට මෙම පුහුණුව නැවත ආරම්භ කිරීමට අවශ්‍යද? ඔබගේ වර්තමාන ප්‍රගතිය සහ ලකුණු අහිමි වනු ඇත.')) {
+                // Reset all state
+                currentStep = 1;
+                score = 0;
+                correctAnswers = 0;
+                startTime = new Date();
+                timeSpent = 0;
+                
+                // Reset UI
+                document.querySelectorAll('.step').forEach(s => {
+                    s.classList.remove('active');
+                    s.removeAttribute('data-scored');
+                });
+                
+                document.querySelectorAll('.scenario-item').forEach(s => s.classList.remove('active'));
+                
+                // Reset options
+                document.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                    opt.style.pointerEvents = 'auto';
+                    const index = Array.from(opt.parentNode.children).indexOf(opt);
+                    opt.querySelector('.option-icon').className = 'option-icon default';
+                    opt.querySelector('.option-icon').textContent = ['A', 'B', 'C', 'D'][index];
+                });
+                
+                // Reset feedback
+                document.querySelectorAll('.feedback-message').forEach(fb => {
+                    fb.style.display = 'none';
+                });
+                
+                // Reset buttons
+                document.querySelectorAll('.btn-primary').forEach(btn => {
+                    btn.innerHTML = 'පිළිතුර අත්කරගන්න <i class="fas fa-arrow-right"></i>';
+                    btn.onclick = function() {
+                        const step = parseInt(btn.closest('.step').id.replace('step', ''));
+                        checkAnswer(step);
+                    };
+                });
+                
+                // Go to first step
+                goToStep(1);
+                updateScoreDisplay();
+                
+                // Reset timer
+                clearInterval(timerInterval);
+                startTimer();
+                
+                alert('පුහුණුව නැවත ආරම්භ කරන ලදී. සුභ පැතුම්!');
+            }
+        }
+    </script>
+</body>
+</html>
